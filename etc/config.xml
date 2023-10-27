@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MageINIC
+ * Copyright (C) 2023 MageINIC <support@mageinic.com>
+ *
+ * NOTICE OF LICENSE
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see https://opensource.org/licenses/gpl-3.0.html.
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category MageINIC
+ * @package MageINIC_BannerSlider
+ * @copyright Copyright (c) 2023 MageINIC (https://www.mageinic.com/)
+ * @license https://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author MageINIC <support@mageinic.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <bannerslider>
+            <general>
+                <enable>0</enable>
+                <enable_at_home>0</enable_at_home>
+            </general>
+            <slider_setting>
+                <color_option>#ffffff</color_option>
+                <slider_speed>400</slider_speed>
+                <navbar>0</navbar>
+                <slide_to_show>1</slide_to_show>
+                <slide_to_scroll>1</slide_to_scroll>
+                <infinite_looping>1</infinite_looping>
+                <autoplay_slider>0</autoplay_slider>
+                <autoplay_slider_speed>2000</autoplay_slider_speed>
+                <dots_slider>0</dots_slider>
+                <arrows_slider>0</arrows_slider>
+                <breakpoints>
+                    <item1>
+                        <breakpoint>1024</breakpoint>
+                        <slides_to_show>1</slides_to_show>
+                        <slides_to_scroll>1</slides_to_scroll>
+                        <dots>true</dots>
+                    </item1>
+                    <item2>
+                        <breakpoint>992</breakpoint>
+                        <slides_to_show>1</slides_to_show>
+                        <slides_to_scroll>1</slides_to_scroll>
+                        <dots>true</dots>
+                    </item2>
+                    <item3>
+                        <breakpoint>480</breakpoint>
+                        <slides_to_show>1</slides_to_show>
+                        <slides_to_scroll>1</slides_to_scroll>
+                        <dots>true</dots>
+                    </item3>
+                </breakpoints>
+            </slider_setting>
+        </bannerslider>
+    </default>
+</config>

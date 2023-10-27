@@ -1,0 +1,142 @@
+<?php
+/**
+ * MageINIC
+ * Copyright (C) 2023 MageINIC <support@mageinic.com>
+ *
+ * NOTICE OF LICENSE
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see https://opensource.org/licenses/gpl-3.0.html.
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category MageINIC
+ * @package MageINIC_BannerSlider
+ * @copyright Copyright (c) 2023 MageINIC (https://www.mageinic.com/)
+ * @license https://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author MageINIC <support@mageinic.com>
+ */
+
+use MageINIC\BannerSlider\Api\Data\BannerInterface;
+use MageINIC\BannerSlider\Api\Data\SliderInterface;
+use MageINIC\BannerSlider\Block\Widget\BannerSlider;
+use Magento\Framework\Escaper;
+
+/**
+ * @var BannerSlider $block
+ * @var Escaper $escaper
+ * @var BannerInterface $banner
+ * @var SliderInterface $slider
+ */
+if ($block->getEnableExtension()):
+    if (!empty($block->getSlider())):
+        $slider = $block->getSlider();
+        $storeId = $block->getCurrentStoreId();
+        $sliderId = $slider->getSliderId();
+        $bannerTitle = $slider->getShowTitle();
+        $defaultItems = $slider->getDefaultItems();
+        $banners = [];
+        if ($sliderId) {
+            $banners = $block->getBannersCollectionBySliderId($sliderId);
+        }
+        $getBackGroundColor = $block->getBackGroundColor();
+        $sliderType = $defaultItems == 1 ? ' single-slide' : ' multiple-slide';
+        if (count($banners) > 0 && $slider->getStatus()):
+            ?>
+        <div class="banner-slider-wrapper">
+            <div class="mageinicslider-container
+            <?= $escaper->escapeHtmlAttr($getBackGroundColor ? ' background' : ' without-background'); ?>
+              <?= $escaper->escapeHtml($sliderType) ?>" style="background-color: <?php if ($defaultItems == 1): ?>
+                    <?= $escaper->escapeHtml($getBackGroundColor);
+                endif; ?>">
+                <?php foreach ($banners as $banner):
+                    $target = $block->getBannersTarget($banner->getTarget()); ?>
+                    <div class="banner-details banner-<?= $escaper->escapeHtml($banner->getBannerId()); ?>
+                        slidesToShow-<?= $escaper->escapeHtml($block->getDefaultSlide() ?
+                        $block->getDefaultSlide() : '3'); ?>">
+                        <a href="<?= $escaper->escapeHtmlAttr($banner->getLink()); ?>"
+                            <?php if ($target): ?> target="<?= $escaper->escapeHtml($target); ?>" <?php endif; ?>
+                           class="banner-link">
+                            <div class="banner-container <?php if (empty($block->filterOutputHtml($banner
+                                ->getCaption()))): ?> <?= $escaper->escapeHtml("full-image"); ?>
+                                <?php endif; ?>" style="background-color: <?php if ($defaultItems > 1): ?>
+                                    <?= $escaper->escapeHtml($getBackGroundColor);?>
+                            <?php endif; ?>">
+                                <?php if (!empty($block->filterOutputHtml($banner->getCaption()))): ?>
+                                    <div class="mageinic-caption-box <?= $escaper->escapeHtmlAttr($banner
+                                        ->getTextPosition()) ?>">
+                                        <div class="banner-caption animated <?= $escaper->escapeHtmlAttr($banner
+                                            ->getCaptionAnimation()) ?>">
+                                            <div class="<?= $escaper->escapeHtmlAttr($banner->getCaptionAnimation()) ?>
+                                        banner-description">
+                                                <h3><?= $escaper->escapeHtml($banner->getName()); ?></h3>
+                                                <?= /* @noEscape */ $block->filterOutputHtml($banner->getCaption()) ?>
+                                            </div>
+                                            <div class="content-link-btn">
+                                                <span class="read-more-link">
+                                                    <?= $escaper->escapeHtml(__('Show more')) ?>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php endif; ?>
+                                <?php if (!empty($banner->getMedia())): ?>
+                                    <div class="banner-media">
+                                        <div class="banner-media-container">
+                                            <?php if ($banner->getMediaType() == 1): ?>
+                                                <img src="<?= $escaper->escapeHtmlAttr($block
+                                                    ->getBannerImageUrl($banner->getMedia()));?>"
+                                                     alt="<?= $escaper->escapeHtmlAttr($banner->getMedia()) ?>"
+                                                     width="1833px" height="600px"/>
+                                            <?php else: ?>
+                                                <video id="iframe" src="<?= $escaper->escapeHtmlAttr($block
+                                                    ->getBannerImageUrl($banner->getMedia())); ?>"
+                                                       width="1833px" height="600px" autoplay muted loop>
+                                                </video>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                        </a>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+            <?php if ($block->isNav()): ?>
+            <div class="mageinicslider-container-nav-wrapper
+                    <?= $escaper->escapeHtml($getBackGroundColor ? ' background' : ' without-background'); ?>
+                    <?= $defaultItems > 1 ? "no-display" : '' ?>">
+                <div class="page-main">
+                    <div class="mageinicslider-container-nav">
+                        <?php $navCount = 1;
+                        foreach ($banners as $banner):
+                            $target = $block->getBannersTarget($banner->getTarget()); ?>
+                            <div>
+                                <h3>
+                                    <span><?= $escaper->escapeHtml($navCount); ?></span>
+                                    <?= $escaper->escapeHtml($banner->getName()); ?>
+                                </h3>
+                            </div>
+                            <?php $navCount++;
+                        endforeach; ?>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+        <?php endif; ?>
+        <script type="text/x-magento-init">
+            {
+                 ".banner-slider-wrapper": {
+                      "banner-slider": <?= /* @noEscape */ $block->getJsonConfig()?>
+                 }
+            }
+        </script>
+    <?php endif; ?>
+<?php endif; ?>

@@ -1,0 +1,247 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MageINIC
+ * Copyright (C) 2023 MageINIC <support@mageinic.com>
+ *
+ * NOTICE OF LICENSE
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see https://opensource.org/licenses/gpl-3.0.html.
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category MageINIC
+ * @package MageINIC_BannerSlider
+ * @copyright Copyright (c) 2023 MageINIC (https://www.mageinic.com/)
+ * @license https://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author MageINIC <support@mageinic.com>
+ */
+ -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="MageINIC\BannerSlider\Api\Data\BannerInterface"
+                type="MageINIC\BannerSlider\Model\Banner"/>
+    <preference for="MageINIC\BannerSlider\Api\Data\SliderInterface"
+                type="MageINIC\BannerSlider\Model\Slider"/>
+    <preference for="MageINIC\BannerSlider\Api\Data\BannerSearchResultsInterface"
+                type="Magento\Framework\Api\SearchResults"/>
+    <preference for="MageINIC\BannerSlider\Api\Data\SliderSearchResultsInterface"
+                type="Magento\Framework\Api\SearchResults"/>
+    <preference for="MageINIC\BannerSlider\Api\BannerRepositoryInterface"
+                type="MageINIC\BannerSlider\Model\BannerRepository"/>
+    <preference for="MageINIC\BannerSlider\Api\SliderRepositoryInterface"
+                type="MageINIC\BannerSlider\Model\SliderRepository"/>
+    <preference for="MageINIC\BannerSlider\Api\SliderLinkRepositoryInterface"
+                type="MageINIC\BannerSlider\Model\SliderLinkRepository"/>
+    <preference for="MageINIC\BannerSlider\Api\Data\SliderBannerLinkInterface"
+                type="MageINIC\BannerSlider\Model\SliderBannerLink"/>
+    <preference for="MageINIC\BannerSlider\Api\SliderLinkManagementInterface"
+                type="MageINIC\BannerSlider\Model\SliderLinkManagement"/>
+    <preference for="MageINIC\BannerSlider\Api\GetUtilitySliderIdentifiersInterface"
+                type="MageINIC\BannerSlider\Model\GetUtilitySliderIdentifiers"/>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="mageinic_slider_listing_data_source" xsi:type="string">
+                    MageINIC\BannerSlider\Model\ResourceModel\Slider\Grid\Collection</item>-->
+                <item name="mageinic_banner_listing_data_source" xsi:type="string">
+                    MageINIC\BannerSlider\Model\ResourceModel\Banner\Grid\Collection
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="MageINIC\BannerSlider\Model\ResourceModel\Slider\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">indianic_bannerslider_slider</argument>
+            <argument name="eventPrefix" xsi:type="string">indianic_slider_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">slider_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">MageINIC\BannerSlider\Model\ResourceModel\Slider
+            </argument>
+        </arguments>
+    </type>
+    <type name="MageINIC\BannerSlider\Model\ResourceModel\Banner\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">indianic_bannerslider_banner</argument>
+            <argument name="eventPrefix" xsi:type="string">mageinic_banner_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">banner_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">MageINIC\BannerSlider\Model\ResourceModel\Banner
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="CmsGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">
+                    Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter
+                </item>
+                <item name="fulltext" xsi:type="object">
+                    Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="MageINIC\BannerSlider\Model\Wysiwyg\Config">
+        <arguments>
+            <argument name="windowSize" xsi:type="array">
+                <item name="height" xsi:type="number">600</item>
+                <item name="width" xsi:type="number">1000</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="MageINIC\BannerSlider\Model\Wysiwyg\Images\Storage">
+        <arguments>
+            <argument name="resizeParameters" xsi:type="array">
+                <item name="height" xsi:type="number">75</item>
+                <item name="width" xsi:type="number">100</item>
+            </argument>
+            <argument name="extensions" xsi:type="array">
+                <item name="allowed" xsi:type="array">
+                    <item name="jpg" xsi:type="string">image/jpg</item>
+                    <item name="jpeg" xsi:type="string">image/jpeg</item>
+                    <item name="png" xsi:type="string">image/png</item>
+                    <item name="gif" xsi:type="string">image/gif</item>
+                </item>
+                <item name="image_allowed" xsi:type="array">
+                    <item name="jpg" xsi:type="string">image/jpg</item>
+                    <item name="jpeg" xsi:type="string">image/jpeg</item>
+                    <item name="png" xsi:type="string">image/png</item>
+                    <item name="gif" xsi:type="string">image/gif</item>
+                </item>
+                <item name="media_allowed" xsi:type="array">
+                    <item name="flv" xsi:type="string">video/x-flv</item>
+                    <item name="swf" xsi:type="string">application/x-shockwave-flash</item>
+                    <item name="avi" xsi:type="string">video/x-msvideo</item>
+                    <item name="mov" xsi:type="string">video/x-sgi-movie</item>
+                    <item name="rm" xsi:type="string">application/vnd.rn-realmedia</item>
+                    <item name="wmv" xsi:type="string">video/x-ms-wmv</item>
+                </item>
+            </argument>
+            <argument name="dirs" xsi:type="array">
+                <item name="exclude" xsi:type="string"/>
+                <item name="include" xsi:type="string"/>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\Model\Entity\RepositoryFactory">
+        <arguments>
+            <argument name="entities" xsi:type="array">
+                <item name="MageINIC\BannerSlider\Api\Data\SliderInterface" xsi:type="string">
+                    MageINIC\BannerSlider\Api\SliderRepositoryInterface
+                </item>
+                <item name="MageINIC\BannerSlider\Api\Data\BannerInterface" xsi:type="string">
+                    MageINIC\BannerSlider\Api\BannerRepositoryInterface
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\MetadataPool">
+        <arguments>
+            <argument name="metadata" xsi:type="array">
+                <item name="MageINIC\BannerSlider\Api\Data\SliderInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">indianic_bannerslider_slider</item>
+                    <item name="identifierField" xsi:type="string">slider_id</item>
+                </item>
+                <item name="MageINIC\BannerSlider\Api\Data\BannerInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">indianic_bannerslider_banner</item>
+                    <item name="identifierField" xsi:type="string">banner_id</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="MageINIC\BannerSlider\BannerImageUpload"
+                 type="MageINIC\BannerSlider\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">MageINIC/bannerslider/tmp</argument>
+            <argument name="basePath" xsi:type="string">MageINIC/bannerslider</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+                <item name="svg" xsi:type="string">svg</item>
+                <item name="mp4" xsi:type="string">mp4</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="MageINIC\BannerSlider\Controller\Adminhtml\Banner\Upload">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">MageINIC\BannerSlider\BannerImageUpload</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\HydratorPool">
+        <arguments>
+            <argument name="hydrators" xsi:type="array">
+                <item name="MageINIC\BannerSlider\Api\Data\SliderInterface" xsi:type="string">
+                    Magento\Framework\EntityManager\AbstractModelHydrator
+                </item>
+                <item name="MageINIC\BannerSlider\Api\Data\BannerInterface" xsi:type="string">
+                    Magento\Framework\EntityManager\AbstractModelHydrator
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\Operation\ExtensionPool">
+        <arguments>
+            <argument name="extensionActions" xsi:type="array">
+                <item name="MageINIC\BannerSlider\Api\Data\SliderInterface" xsi:type="array">
+                    <item name="read" xsi:type="array">
+                        <item name="storeReader" xsi:type="string">
+                            MageINIC\BannerSlider\Model\ResourceModel\Slider\Relation\Store\ReadHandler
+                        </item>
+                    </item>
+                    <item name="create" xsi:type="array">
+                        <item name="storeCreator" xsi:type="string">
+                            MageINIC\BannerSlider\Model\ResourceModel\Slider\Relation\Store\SaveHandler
+                        </item>
+                    </item>
+                    <item name="update" xsi:type="array">
+                        <item name="storeUpdater" xsi:type="string">
+                            MageINIC\BannerSlider\Model\ResourceModel\Slider\Relation\Store\SaveHandler
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="MageINIC\BannerSlider\Model\Api\SearchCriteria\CollectionProcessor\SliderFilterProcessor"
+                 type="Magento\Framework\Api\SearchCriteria\CollectionProcessor\FilterProcessor">
+        <arguments>
+            <argument name="customFilters" xsi:type="array">
+                <item name="store_id" xsi:type="object">
+                    MageINIC\BannerSlider\Model\Api\SearchCriteria\CollectionProcessor\FilterProcessor\SliderStoreFilter
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="MageINIC\BannerSlider\Model\Api\SearchCriteria\SliderCollectionProcessor"
+                 type="Magento\Framework\Api\SearchCriteria\CollectionProcessor">
+        <arguments>
+            <argument name="processors" xsi:type="array">
+                <item name="filters" xsi:type="object">
+                    MageINIC\BannerSlider\Model\Api\SearchCriteria\CollectionProcessor\SliderFilterProcessor
+                </item>
+                <item name="sorting" xsi:type="object">
+                    Magento\Framework\Api\SearchCriteria\CollectionProcessor\SortingProcessor
+                </item>
+                <item name="pagination" xsi:type="object">
+                    Magento\Framework\Api\SearchCriteria\CollectionProcessor\PaginationProcessor
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="MageINIC\BannerSlider\Ui\Component\DataProvider">
+        <arguments>
+            <argument name="additionalFilterPool" xsi:type="array">
+                <item name="fulltext" xsi:type="object">MageINIC\BannerSlider\Ui\Component\Banner\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

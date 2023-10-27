@@ -1,0 +1,75 @@
+{
+    "indianic_bannerslider_banner": {
+        "column": {
+            "banner_id": true,
+            "name": true,
+            "slider_id": true,
+            "link": true,
+            "target": true,
+            "media": true,
+            "media_alt": true,
+            "caption": true,
+            "caption_animation": true,
+            "text_position": true,
+            "creation_time": true,
+            "update_time": true,
+            "status": true,
+            "media_type": true
+        },
+        "index": {
+            "INDIANIC_BANNERSLIDER_BANNER_NAME_CAPTION_MEDIA_ALT": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "indianic_bannerslider_slider": {
+        "column": {
+            "slider_id": true,
+            "title": true,
+            "slider_position": true,
+            "status": true,
+            "sort_type": true,
+            "default_items": true,
+            "caption": true,
+            "start_date": true,
+            "end_date": true
+        },
+        "index": {
+            "INDIANIC_BANNERSLIDER_SLIDER_TITLE_CAPTION": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "indainic_bannerslider_slider_store": {
+        "column": {
+            "slider_id": true,
+            "store_id": true
+        },
+        "index": {
+            "INDAINIC_BANNERSLIDER_SLIDER_STORE_STORE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_CCFE50AC0BB07FBBD69CD5DFAD05A04E": true,
+            "INDAINIC_BANNERSLIDER_SLIDER_STORE_STORE_ID_STORE_STORE_ID": true
+        }
+    },
+    "indianic_slider_banner": {
+        "column": {
+            "entity_id": true,
+            "slider_id": true,
+            "banner_id": true,
+            "position": true
+        },
+        "index": {
+            "INDIANIC_SLIDER_BANNER_BANNER_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_A48B7D62D716AB38C546913A6E90FB2B": true,
+            "INDIANIC_SLIDER_BANNER_SLIDER_ID_BANNER_ID": true
+        }
+    }
+}

@@ -1,0 +1,158 @@
+{
+	"info": {
+		"_postman_id": "08feb601-05ca-4bda-95a3-3e299a48642e",
+		"name": "BannerSliderAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "slider search",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rest/V1/slider/search?searchCriteria[pageSize]=10&searchCriteria[currentPage]=1&searchCriteria[sortOrders][0][field]=title&searchCriteria[sortOrders][0][direction]=asc",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rest",
+						"V1",
+						"slider",
+						"search"
+					],
+					"query": [
+						{
+							"key": "searchCriteria[pageSize]",
+							"value": "10"
+						},
+						{
+							"key": "searchCriteria[currentPage]",
+							"value": "1"
+						},
+						{
+							"key": "searchCriteria[sortOrders][0][field]",
+							"value": "title"
+						},
+						{
+							"key": "searchCriteria[sortOrders][0][direction]",
+							"value": "asc"
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Banner search",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rest/V1/banner/search?searchCriteria[pageSize]=10&searchCriteria[currentPage]=1&searchCriteria[sortOrders][0][field]=name&searchCriteria[sortOrders][0][direction]=asc&searchCriteria[filterGroups][0][filters][0][field]=media_type&searchCriteria[filterGroups][0][filters][0][value]=2",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rest",
+						"V1",
+						"banner",
+						"search"
+					],
+					"query": [
+						{
+							"key": "searchCriteria[pageSize]",
+							"value": "10"
+						},
+						{
+							"key": "searchCriteria[currentPage]",
+							"value": "1"
+						},
+						{
+							"key": "searchCriteria[sortOrders][0][field]",
+							"value": "name"
+						},
+						{
+							"key": "searchCriteria[sortOrders][0][direction]",
+							"value": "asc"
+						},
+						{
+							"key": "searchCriteria[filterGroups][0][filters][0][field]",
+							"value": "media_type"
+						},
+						{
+							"key": "searchCriteria[filterGroups][0][filters][0][value]",
+							"value": "2"
+						},
+						{
+							"key": "searchCriteria",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Slider Detail",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rest/V1/slider?sliderId=1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rest",
+						"V1",
+						"slider"
+					],
+					"query": [
+						{
+							"key": "sliderId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Banner Detail",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rest/V1/banner?bannerId=1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rest",
+						"V1",
+						"banner"
+					],
+					"query": [
+						{
+							"key": "bannerId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

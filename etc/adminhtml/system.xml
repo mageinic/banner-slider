@@ -1,0 +1,169 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MageINIC
+ * Copyright (C) 2023 MageINIC <support@mageinic.com>
+ *
+ * NOTICE OF LICENSE
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see https://opensource.org/licenses/gpl-3.0.html.
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category MageINIC
+ * @package MageINIC_BannerSlider
+ * @copyright Copyright (c) 2023 MageINIC (https://www.mageinic.com/)
+ * @license https://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author MageINIC <support@mageinic.com>
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="mageinic" translate="label" sortOrder="450">
+            <label>mageinic</label>
+        </tab>
+        <section id="bannerslider" translate="label" type="text" sortOrder="300"
+                 showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Banner Slider</label>
+            <tab>mageinic</tab>
+            <resource>MageINIC_BannerSlider::config_bannerslider</resource>
+            <group id="general" translate="label comment" type="text" sortOrder="5"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="enable" translate="label comment" type="select"
+                       sortOrder="0"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <comment><![CDATA[Enable On Frontend]]></comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="enable_at_home" translate="label comment" type="select"
+                       sortOrder="0"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable at Home Page</label>
+                    <comment><![CDATA[Enable Slider at Home Page]]></comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="slider_id" translate="label comment" type="select"
+                       sortOrder="0"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Home Slider</label>
+                    <comment><![CDATA[Select Slider To Be Displayed on Home Page]]></comment>
+                    <source_model>MageINIC\BannerSlider\Model\Config\Source\Sliders</source_model>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="enable_at_home">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="slider_setting" translate="label" type="text" sortOrder="5"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Slider Settings</label>
+                <depends>
+                    <field id="bannerslider/general/enable">1</field>
+                </depends>
+                <field id="color_option" translate="label comment" type="text" sortOrder="0"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Choose Background Color</label>
+                    <comment><![CDATA[Background color]]></comment>
+                    <frontend_model>MageINIC\BannerSlider\Block\Color</frontend_model>
+                    <depends>
+                        <field id="bannerslider/general/enable">1</field>
+                    </depends>
+                </field>
+                <field id="slider_speed" translate="label" type="text" sortOrder="2" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Slider speed</label>
+                    <validate>validate-digits</validate>
+                    <depends>
+                        <field id="bannerslider/general/enable">1</field>
+                    </depends>
+                </field>
+                <field id="navbar" translate="label" type="select" sortOrder="8"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Nav Bar Show</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="bannerslider/general/enable">1</field>
+                    </depends>
+                </field>
+
+                <field id="slide_to_show" translate="label" type="text" sortOrder="3" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Default Slider to Show</label>
+                    <validate>validate-digits</validate>
+                    <depends>
+                        <field id="bannerslider/general/enable">1</field>
+                    </depends>
+                </field>
+                <field id="slide_to_scroll" translate="label" type="text" sortOrder="4" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Default Slide to Scroll</label>
+                    <validate>validate-digits</validate>
+                    <depends>
+                        <field id="bannerslider/general/enable">1</field>
+                    </depends>
+                </field>
+                <field id="autoplay_slider" translate="label" type="select" sortOrder="5" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Auto play slider</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="bannerslider/general/enable">1</field>
+                    </depends>
+                </field>
+                <field id="autoplay_slider_speed" translate="label" type="text" sortOrder="6" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Auto play slider speed</label>
+                    <validate>validate-digits</validate>
+                    <depends>
+                        <field id="bannerslider/general/enable">1</field>
+                        <field id="autoplay_slider">1</field>
+                    </depends>
+                </field>
+                <field id="infinite_looping" translate="label" type="select" sortOrder="7" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Enable infinite looping</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="bannerslider/general/enable">1</field>
+                    </depends>
+                </field>
+                <field id="dots_slider" translate="label" type="select" sortOrder="8" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Dots for slider</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="bannerslider/general/enable">1</field>
+                    </depends>
+                </field>
+                <field id="arrows_slider" translate="label" type="select" sortOrder="9" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Arrows for slider</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="bannerslider/general/enable">1</field>
+                    </depends>
+                </field>
+                <field id="breakpoints" translate="label" sortOrder="90" showInDefault="10" showInWebsite="1"
+                       showInStore="1">
+                    <label>Breakpoints</label>
+                    <frontend_model>MageINIC\BannerSlider\Block\System\Config\DynamicRow</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                    <depends>
+                        <field id="bannerslider/general/enable">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

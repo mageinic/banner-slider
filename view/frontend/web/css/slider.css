@@ -1,0 +1,57 @@
+.mageinicslider-container.background .slick-next:before{
+    height: 30px;
+    width: 30px;
+    font-size: 0;
+    padding-left: 0;
+}
+
+.mageinicslider-container.background .slick-prev:before{
+    height: 30px;
+    width: 30px;
+    font-size: 0;
+    padding-right: 0;
+}
+
+button.slick-next,  .slick-next:not(.primary){
+    outline: none;
+    background: transparent;
+    color: transparent;
+}
+button.slick-next:hover, .slick-next:not(.primary):hover{
+    background: rgba(252, 252, 252, 0.7);
+    border: none;
+    box-shadow: none;
+}
+
+button.slick-prev,  .slick-prev:not(.primary){
+    outline: none;
+    background: transparent;
+    color: transparent;
+}
+button.slick-prev:hover, .slick-prev:not(.primary):hover{
+    background: rgba(252, 252, 252, 0.7);
+    border: none;
+    box-shadow: none;
+}
+
+.slick-dots {
+    bottom: -95px !important;
+}
+
+.slick-dots li button {
+    border: 1px solid #000000 !important;
+}
+
+.slick-dots li {
+    position: relative;
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    margin: 0 5px;
+    padding: 0;
+    cursor: pointer;
+}
+
+.mageinicslider-container-nav-wrapper.background {
+    margin-bottom: 50px;
+}

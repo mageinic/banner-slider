@@ -1,0 +1,74 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * MageINIC
+ * Copyright (C) 2023 MageINIC <support@mageinic.com>
+ *
+ * NOTICE OF LICENSE
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see https://opensource.org/licenses/gpl-3.0.html.
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category MageINIC
+ * @package MageINIC_BannerSlider
+ * @copyright Copyright (c) 2023 MageINIC (https://www.mageinic.com/)
+ * @license https://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author MageINIC <support@mageinic.com>
+ */
+-->
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget class="MageINIC\BannerSlider\Block\Widget\BannerSlider" id="banner-slider-widget">
+        <label translate="true">MageINIC Banner slider Widget</label>
+        <description translate="true">Creating MageINIC Banner Slider Widget</description>
+        <parameters>
+            <parameter name="slider_id" xsi:type="select" visible="true" required="false" sort_order="10"
+                       source_model="MageINIC\BannerSlider\Model\Config\Source\Sliders">
+                <label translate="true">Select Slider</label>
+            </parameter>
+            <parameter name="arrow_slider" xsi:type="select" visible="true" required="false" sort_order="10"
+                       source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Arrow for slider</label>
+            </parameter>
+            <parameter name="dots_slider" xsi:type="select" visible="true" required="false" sort_order="20"
+                       source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Dots for slider</label>
+            </parameter>
+            <parameter name="navbar" xsi:type="select" visible="true" required="false" sort_order="25"
+                       source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">NavBar Show</label>
+            </parameter>
+            <parameter name="infinite_looping" xsi:type="select" visible="true" required="false" sort_order="25"
+                       source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Infinite looping</label>
+            </parameter>
+            <parameter name="autoplay" xsi:type="select" visible="true" required="false" sort_order="30"
+                       source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Autoplay Slider</label>
+            </parameter>
+            <parameter name="autoplay_speed" xsi:type="text" visible="true" required="false" sort_order="35">
+                <label translate="true">Auto speed</label>
+                <depends>
+                    <parameter name="autoplay" value="1"/>
+                </depends>
+            </parameter>
+            <parameter name="default_slide" xsi:type="text" visible="true" required="false" sort_order="40">
+                <label translate="true">Slides to Show</label>
+            </parameter>
+            <parameter name="default_slick" xsi:type="text" visible="true" required="false" sort_order="45">
+                <label translate="true">Slicks to Scroll</label>
+            </parameter>
+            <parameter name="slider_speed" xsi:type="text" visible="true" required="false" sort_order="50">
+                <label translate="true">Slider speed</label>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>
