@@ -1,16 +1,16 @@
 {
-    "name": "mageinic/banner-slider",
-    "description": "Banner Slider by MageINIC. Effortlessly create and manage captivating banner sliders to showcase promotions, products, and more. Direct customers to specific pages or URLs with clickable banners. Schedule promotions in advance, and easily edit and reorder banners for seamless management. Boost conversions and enhance your brand's presence with this powerful extension.",
-    "require": {
-        "php": "^8.0",
-        "mageinic/core": "1.0.*",
-    },
+  "name": "mageinic/bannerslider",
+    "description": "Banner Slider by MageINIC. Effortlessly create and manage captivating banner sliders to showcase promotions, products, and more. Direct customers to specific pages or URLs with clickable banners. Schedule promotions in advance, and easily edit and reorder banners for seamless management. Boost conversions and enhance your brands presence with this powerful extension.",
     "type": "magento2-module",
-    "version": "1.0.0",
     "license": [
         "OSL-3.0",
         "AFL-3.0"
     ],
+    "version": "1.0.0",
+    "require": {
+        "php": "^8.0",
+        "mageinic/core": "1.0.*"
+    },
     "authors": [
         {
             "name": "MageINIC",
@@ -23,7 +23,7 @@
             "registration.php"
         ],
         "psr-4": {
-            "MageINIC\\BannerSlider\\": ""
+            "MageINIC\\bannerslider\\": ""
         }
     }
 }
