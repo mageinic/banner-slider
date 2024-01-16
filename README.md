@@ -11,7 +11,7 @@
 Run the following command in Magento 2 root folder
 
 ```
-composer require mageinic/bannerslider
+composer require mageinic/banner-slider
 
 php bin/magento maintenance:enable
 php bin/magento setup:upgrade

@@ -376,11 +376,31 @@ class BannerSlider extends Template implements BlockInterface
     /**
      * Receive configuration for Slider component
      *
+     * @return array
+     */
+    public function getJsonConfig()
+    {
+        return $this->getSliderConfig();
+    }
+
+    /**
+     * Get Break Point
+     *
      * @return string
      */
-    public function getJsonConfig(): string
+    public function getBreakPoint()
     {
-        return $this->serializer->serialize($this->getSliderConfig());
+        return $this->helper->getBreakPoints();
+    }
+
+    /**
+     * Get Hyva Break Point
+     *
+     * @return string
+     */
+    public function getHyvaBreakPoint()
+    {
+        return $this->helper->getHyvaBreakPoints();
     }
 
     /**
@@ -390,6 +410,7 @@ class BannerSlider extends Template implements BlockInterface
      */
     public function getSliderConfig(): array
     {
+
         return [
             'arrows' => $this->isArrow(),
             'infinite' => (bool)$this->getInfiniteLooping(),
@@ -402,5 +423,15 @@ class BannerSlider extends Template implements BlockInterface
             'autoplaySpeed' => $this->getAutoPlaySpeed() ? $this->getAutoPlaySpeed() : 2000,
             'responsive' => $this->helper->getBreakPoints()
         ];
+    }
+
+    /**
+     * Get Helper Data
+     *
+     * @return Data
+     */
+    public function getHelperData()
+    {
+        return $this->helper;
     }
 }

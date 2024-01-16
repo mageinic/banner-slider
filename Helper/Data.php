@@ -106,7 +106,7 @@ class Data extends AbstractHelper
     private SliderRepositoryInterface $sliderRepository;
 
     /**
-     * @var TimezoneInterface 
+     * @var TimezoneInterface
      */
     private TimezoneInterface $date;
 
@@ -460,13 +460,13 @@ class Data extends AbstractHelper
     /**
      * Receive Breakpoints
      *
-     * @return string
+     * @return array
      */
-    public function getBreakPoints(): string
+    public function getBreakPoints()
     {
         $breakpoints = $this->scopeConfig->getValue(self::BREAKPOINT, ScopeInterface::SCOPE_STORE);
-        $values = [];
         $breakpoints = $this->serializer->unserialize($breakpoints);
+        $values = [];
         foreach ($breakpoints as $breakpoint) {
             $values[] = [
                 "breakpoint" => (int)$breakpoint['breakpoint'],
@@ -474,6 +474,27 @@ class Data extends AbstractHelper
                     "slidesToShow" => (int)$breakpoint['slides_to_show'],
                     "slidesToScroll" => (int)$breakpoint['slides_to_scroll'],
                     "dots" => (bool)$breakpoint['dots']
+                ],
+            ];
+        }
+        return $values;
+    }
+
+    /**
+     * Receive Hyva BreakPoints
+     *
+     * @return string
+     */
+    public function getHyvaBreakPoints()
+    {
+        $breakpoints = $this->scopeConfig->getValue(self::BREAKPOINT, ScopeInterface::SCOPE_STORE);
+        $values = [];
+        $breakpoints = $this->serializer->unserialize($breakpoints);
+        foreach ($breakpoints as $breakpoint) {
+            $values[] = [
+                "breakpoint" => $breakpoint['breakpoint'],
+                "settings" => [
+                    "slidesToShow" => (int)$breakpoint['slides_to_show']
                 ]
             ];
         }
